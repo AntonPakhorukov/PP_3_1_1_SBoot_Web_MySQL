@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.model.User;
 import com.example.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,6 @@ public class UserController {
 
     @GetMapping
     public String listUsers(Model model) {
-//        List<User> users = userService.findAll();
         model.addAttribute("users", userService.findAll());
         return "UsersPage";
     }
@@ -37,7 +37,7 @@ public class UserController {
     }
 
     @PostMapping
-    public String createUser(@ModelAttribute("user") /*@Valid*/ User user, BindingResult bindingResult) {
+    public String createUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "createUser";
         }
@@ -52,7 +52,7 @@ public class UserController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateUser(@ModelAttribute("user") /*@Valid*/ User user, BindingResult bindingResult,
+    public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
                              @PathVariable("id") long id) {
         if (bindingResult.hasErrors()) {
             return "updateUser";
