@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
     public void updateUser(User user) {
         User updateUser = userRepository.findById(user.getId()).get();
         updateUser.setName(user.getName());
-        updateUser.setAge(updateUser.getAge());
+        updateUser.setAge(user.getAge());
         updateUser.setEmail(user.getEmail());
         userRepository.save(updateUser);
     }

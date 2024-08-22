@@ -38,17 +38,12 @@
     <tr th:each="user : ${users}">
         <td th:text="${user.getId()}"></td>
         <td>
-           <a th:href="@{/users/id?id={id}(id=${user.getId()})}" th:text="${user.getName()}"/>
+           <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}"/>
         </td>
         <td th:text="${user.getAge()}"></td>
         <td th:text="${user.getEmail()}"></td>
     </tr>
 </table>
-<!--<div th:each="user : ${users}">-->
-<!--    <a th:text="'ID: ' + ${user.getId()} + ', '">UserID</a>-->
-<!--    <a th:href="@{/users/id?id={id}(id=${user.getId()})}"  th:text="'name: ' + ${user.getName()} + ', '">UserName</a>-->
-<!--    <a th:text="'age: ' + ${user.getAge()} + ', '">UserAge</a> <a th:text="'email: ' + ${user.getEmail()}+ '.'">UserEmail</a>-->
-<!--</div>-->
 <hr/>
 <form th:method="GET" th:action="@{/users/new}">
     <input type="submit" value="Create new user">
